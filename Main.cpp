@@ -3,7 +3,7 @@
 
 using namespace std;
 
-RECT scr;
+RECT screen;
 
 void GetPixels(COLORREF* pixels)
 {
@@ -11,7 +11,7 @@ void GetPixels(COLORREF* pixels)
 
 	for (int x = 0; x < 2; x++)
 		for (int y = 0; y < 2; y++)
-			pixels[index++] = GetPixel(GetDC(GetActiveWindow()), (int)scr.right / 2 + x, (int)scr.bottom / 2 + y);
+			pixels[index++] = GetPixel(GetDC(GetActiveWindow()), (int)screen.right / 2 + x, (int)screen.bottom / 2 + y);
 }
 
 COLORREF GetAveragePixelColor(COLORREF* pixels)
@@ -46,11 +46,11 @@ int main()
 {
 	COLORREF *oldPixels = new COLORREF[4], *currentPixels = new COLORREF[4];
 
-	cout << "© 2021 Meiware.net\nvisually examines pixels and simulates key press (no memory modification)\nhold 'Q' for triggerbot" << endl;
+	cout << "Â© 2021 Meiware.net\nvisually examines pixels and simulates key press (no memory modification)\nhold 'Q' for triggerbot" << endl;
 
 	while (true)
 	{
-		GetWindowRect(GetForegroundWindow(), &scr);
+		GetWindowRect(GetForegroundWindow(), &screen);
 
 		if (!GetAsyncKeyState('Q'))
 			GetPixels(oldPixels); //store old pixels
